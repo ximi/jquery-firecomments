@@ -10,7 +10,7 @@ This is the alpha release of jQuery FireComments, a [jQuery](http://jquery.com/)
 
 ### How do I use it? ###
  1. Sign up for a free [Firebase Account](https://www.firebase.com/signup/). Their free plan should suffice for all smaller websites (around 70000 monthly pageviews according to Firebase). If you have a website with a large amount of traffic you will need to sign up for one of their paid plans.
- 2. Add security rules to your Firebase. If you aren't going to modify the default url structure (as defined by the parent_path/child_path options) you can use the rules from the firebase_security_rules_example.json or adjust them according to your needs.
+ 2. Add security rules to your Firebase. If you aren't going to modify the default url structure (as defined by the parent_path/child_path options) you can use the rules from the firebase_security_rules_example.json or adjust them according to your needs. If you want to know more check out the [Firebase docs](https://www.firebase.com/docs/security-quickstart.html)
  3. Include jquery, firebase and firecomments on your page
 
          <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
