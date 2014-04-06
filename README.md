@@ -19,7 +19,7 @@ This is the alpha release of jQuery FireComments, a [jQuery](http://jquery.com/)
  4. Call jQuery FireComments on the element you want the comments to appear in with your firebase url:
 
         $("#element").fireComments({
-            firebase_url: 'https://sizzling-fire-1457.firebaseio.com/'
+            firebase_url: 'https://yourfirebase.firebaseio.com/'
         });
 
 ### Options ###
