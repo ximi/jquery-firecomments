@@ -1,0 +1,69 @@
+{
+    /*** Globals ***/
+    "predef": {
+        "Firebase": false
+    },
+
+    /*** Environments ***/
+    "browser":      true,
+    "couch":        false,
+    "devel":        false,
+    "dojo":         false,
+    "jquery":       true,
+    "mootools":     false,
+    "node":         false,
+    "nonstandard":  false,
+    "prototypejs":  false,
+    "rhino":        false,
+    "wsh":          false,
+
+    /*** Enforcing options ***/
+    "bitwise":      true,
+    "camelcase":    false,
+    "curly":        true,
+    "eqeqeq":       false,
+    "forin":        false,
+    "immed":        true,
+    "latedef":      "nofunc",
+    "newcap":       true,
+    "noarg":        true,
+    "noempty":      true,
+    "nonew":        true,
+    "plusplus":     false,
+    "quotmark":     "single",
+    "undef":        true,
+    "unused":       "vars",
+    "strict":       true,
+    "trailing":     true,
+
+    /*** Relaxing options ***/
+    "asi":          false,
+    "boss":         false,
+    "debug":        false,
+    "eqnull":       false,
+    "es5":          false,
+    "esnext":       false,
+    "evil":         false,
+    "expr":         false,
+    "funcscope":    false,
+    "globalstrict": false,
+    "iterator":     false,
+    "lastsemic":    false,
+    "laxbreak":     false,
+    "laxcomma":     false,
+    "loopfunc":     false,
+    "multistr":     false,
+    "proto":        false,
+    "scripturl":    false,
+    "smarttabs":    false,
+    "shadow":       false,
+    "sub":          false,
+    "supernew":     false,
+    "validthis":    false,
+
+    /*** Legacy from JSLint ***/
+    "nomen":        false,
+    "onevar":       false,
+    "passfail":     false,
+    "white":        false
+}

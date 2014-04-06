@@ -1,0 +1,19 @@
+{
+  "name": "jquery-firecomments",
+  "title": "jQuery FireComments",
+  "description": "Add a commenting system powered by Firebase to any page",
+  "author": "Max (ximi)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ximi/jquery-firecomments.git"
+  },
+  "homepage": "https://github.com/ximi/jquery-firecomments/",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.4.0"
+  }
+}

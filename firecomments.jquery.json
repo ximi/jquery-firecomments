@@ -1,0 +1,37 @@
+{
+    "name": "firecomments",
+    "title": "jQuery FireComments",
+    "description": "Add a commenting system powered by Firebase to any page",
+    "keywords": [
+        "jquery",
+        "comments",
+        "commenting",
+        "firebase"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "Max (ximi)",
+        "email": "max@ximi.io",
+        "url": "http://ximi.io"
+    },
+    "maintainers": [
+        {
+            "name": "Max (ximi)",
+            "email": "max@ximi.io",
+            "url": "http://ximi.io"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://ximi.mit-license.org/"
+        }
+    ],
+    "bugs": "https://github.com/ximi/jquery-firecomments/issues",
+    "homepage": "https://github.com/ximi/jquery-firecomments/",
+    "docs": "https://github.com/ximi/jquery-firecomments#readme",
+    "download": "https://github.com/ximi/jquery-firecomments/archive/master.zip",
+    "dependencies": {
+        "jquery": ">=1.4"
+    }
+}
