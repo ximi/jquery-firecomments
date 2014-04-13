@@ -17,7 +17,8 @@
             new_desc: true,
             comments_container: '<section id="fire-comments"></section>',
             form: '<form id="fire-comment-form"></form>',
-            form_before: true
+            form_before: true,
+            honeypot: 'phone'
         },
         utilities = {
             trimSlashes: function(string) {
@@ -30,6 +31,9 @@
             },
             stripHtml: function(html) {
                 return $('<div></div>').html(html).text();
+            },
+            isjQueryObject: function(obj) {
+                return obj instanceof jQuery;
             },
             isInDom: function(element) {
                 return $.contains(document.documentElement, $(element)[0]);
@@ -106,6 +110,10 @@
                     that.saveComment();
                 });
             }
+            else {
+                // retry until firebase is setup
+                this.setupEvents();
+            }
         },
         renderComment: function(snapshot) {
             if(snapshot) {
@@ -148,7 +156,11 @@
             else {
                 // check if our form is empty, if not we're presuming the comment fields are already present
                 if(!this.$form.find('input, textarea').length) {
-                    var form_html = this.renderFormGroup('Name', 'name', 'text');
+                    var form_html = '';
+                    if(this.settings.honeypot) {
+                        form_html += this.renderFormGroup(false, this.settings.honeypot, 'text');
+                    }
+                    form_html += this.renderFormGroup('Name', 'name', 'text');
                     form_html += this.renderFormGroup('Website', 'website', 'url');
                     form_html += this.renderFormGroup('Comment', 'content', 'textarea', true);
                     form_html += '<input type="submit" value="Submit" />';
@@ -164,6 +176,15 @@
              */
             if(typeof rendered_form !== 'undefined') {
                 this.$form.html(rendered_form);
+
+                // prevent autofill
+                // and hide our honeypot by moving it out of the viewport
+                if(this.settings.honeypot) {
+                    this.$form.attr('autocomplete', 'off').find('#fire-comment-' + this.settings.honeypot).css({
+                        position: 'absolute',
+                        left: '-10000px'
+                    });
+                }
             }
         },
         renderFormGroup: function(label, slug, type, required) {
@@ -174,8 +195,11 @@
                 rendered_form_group = this.settings.renderFormGroup.apply(this.element, [label, slug, type, required]);
             }
             else {
-                var form_group_html = '<div class="fire-comment-form-group">';
-                form_group_html += '<label class="fire-comment-form-label" for="fire-comment-' + slug + '">' + label + '</label>';
+                var form_group_html = '';
+                if(label) {
+                    form_group_html += '<div class="fire-comment-form-group">';
+                    form_group_html += '<label class="fire-comment-form-label" for="fire-comment-' + slug + '">' + label + '</label>';
+                }
                 if(type === 'textarea') {
                     form_group_html += '<textarea';
                 }
@@ -192,7 +216,9 @@
                 else {
                     form_group_html += ' />';
                 }
-                form_group_html += '</div>';
+                if(label) {
+                    form_group_html += '</div>';
+                }
                 rendered_form_group = form_group_html;
             }
 
@@ -206,20 +232,24 @@
             }
         },
         saveComment: function() {
-            var comment_name = this.$form.find('#fire-comment-name').val(),
+            var comment_honeypot = this.$form.find('#fire-comment-' + this.settings.honeypot).val(),
+                comment_name = this.$form.find('#fire-comment-name').val(),
                 comment_website = this.$form.find('#fire-comment-website').val(),
                 comment_content = this.$form.find('#fire-comment-content').val();
 
-            // Some light data sanitation
-            comment_name = $.trim(utilities.stripHtml(comment_name));
-            comment_website = $.trim(utilities.stripHtml(comment_website));
-            comment_content = $.trim(utilities.nl2br(utilities.stripHtml(comment_content)));
+            // if our honeypot has been filled out, don't submit any data
+            if(!this.settings.honeypot || comment_honeypot === '') {
+                // Some light data sanitation
+                comment_name = $.trim(utilities.stripHtml(comment_name));
+                comment_website = $.trim(utilities.stripHtml(comment_website));
+                comment_content = $.trim(utilities.nl2br(utilities.stripHtml(comment_content)));
 
-            this.firebase.push({
-                name: comment_name,
-                website: comment_website,
-                content: comment_content
-            });
+                this.firebase.push({
+                    name: comment_name,
+                    website: comment_website,
+                    content: comment_content
+                });
+            }
         }
     };
 
