@@ -10,7 +10,8 @@ This is the alpha release of jQuery FireComments, a [jQuery](http://jquery.com/)
 
 ### How do I use it? ###
  1. Sign up for a free [Firebase Account](https://www.firebase.com/signup/). Their free plan should suffice for all smaller websites (around 70000 monthly pageviews according to Firebase). If you have a website with a large amount of traffic you will need to sign up for one of their paid plans.
- 2. Add security rules to your Firebase. If you aren't going to modify the default url structure (as defined by the parent_path/child_path options) you can use the rules from the firebase_security_rules_example.json or adjust them according to your needs. If you want to know more check out the [Firebase docs](https://www.firebase.com/docs/security-quickstart.html)
+ 2. Add security rules to your Firebase. If you aren't going to modify the default url structure (as defined by the parent_path/child_path options) you can use the rules from the firebase_security_rules_example.json or adjust them according to your needs. If you want to know more check out the [Firebase docs](https://www.firebase.com/docs/security-quickstart.html).
+    With the default rules you will also need to manually create the posts object in your Firebase or submit an initial comment before adding the security rules.
  3. Include jquery, firebase and firecomments on your page
 
          <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -118,10 +119,19 @@ Arguments: `label, slug, type, required`
 
 This let's you render the form inputs and its related html yourself. You can either return a html string or directly manipulate the dom yourself and return false/nothing.
 
+#### honeypot ####
+
+Default: `phone`
+
+Type: string | boolean
+
+This let's you add a [honeypot](http://en.wikipedia.org/wiki/Honeypot_(computing)) field to the comment form to further prevent spam (if the form is rendered via js as is the default the amount of spam should already be drastically reduced). Pass in the desired form field name/id or set it to false if you don't want a honeypot field.
+Adding the honeypot will automatically set a autocomplete="off" attribute on the comment form to stop browsers from autofilling the honeypot and thus preventing legit users from submitting their comment.
+
 ### Plans for the Future ###
 #### Short Term ####
  * Add the ability to define custom fields
- * Basic spam proteciton
+ * ~~Basic spam proteciton~~
  * Ability to edit/delete comment while still on page
  * Better, more detailed readme/docs
  * much, much more...
@@ -130,4 +140,4 @@ This let's you render the form inputs and its related html yourself. You can eit
  * Ability to remember user (prefill fields, delete/edit old comments)
  * Better way to customize html structure (basic templating system)
  * jQuery independent version
- * much, much more
+ * much, much more...
